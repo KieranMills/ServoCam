@@ -1,4 +1,3 @@
-
 from __future__ import division
 import RPi.GPIO as GPIO
 import time
@@ -13,7 +12,7 @@ import socket
 #import RPi.GPIO as GPIO
 import struct
 HEADERSIZE = 10
-host = '192.168.1.11'
+host = '192.168.1.14'
 #change your ip here to the computer you use.
 port = 80
 channel = 23
@@ -43,14 +42,16 @@ if __name__ == '__main__':
         time.sleep(1)
         motor_off(channel)
         time.sleep(1)
-        GPIO.cleanup()
+        # GPIO.cleanup()
     except KeyboardInterrupt:
+        print("this is an except")
         GPIO.cleanup()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.connect((host,port))
 st = struct.Struct('I I I')
+#packing three intergers into a struct. 
 print('successful connection')
 while True:
     msg = s.recv(12)
@@ -59,15 +60,11 @@ while True:
     #y.ChangeDutyCycle(coords[1]/float(30)+3)
     x = coords[0]   # resx = your screen resolution x
     y = coords[1]  # resy = your screen resolution y
-    z = coords[2]
+    z = coords[2]  # fire command
     if z == 1:
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(23, GPIO.OUT)
-        GPIO.output(23, GPIO.HIGH)
+        GPIO.output(channel, GPIO.HIGH)
     else:
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(23, GPIO.OUT)
-        GPIO.output(23, GPIO.LOW)
+        GPIO.output(channel, GPIO.LOW)
         
     print(z)
     #print(x)

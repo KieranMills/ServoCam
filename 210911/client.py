@@ -14,7 +14,7 @@ import socket
 #import RPi.GPIO as GPIO
 import struct
 HEADERSIZE = 10
-host = '192.168.1.11'
+host = '192.168.1.14'
 #change your ip here to the computer you use.
 port = 80
 
