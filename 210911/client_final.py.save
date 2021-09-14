@@ -13,13 +13,14 @@ import socket
 import struct
 HEADERSIZE = 10
 
-fi = open("ip.txt","rt")
-contents = fi.read()
-fi.close()
-print("The Server IP is", contents)
+#Some new changes, IP not hard coded. 
+file = open("ip.txt","rt")
+contents = file.read()
+file.close()
+
+print("The Server IP is",contents)
 
 host = contents
-#host = '192.168.1.14'
 #change your ip here to the computer you use.
 port = 80
 channel = 23
