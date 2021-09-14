@@ -1,8 +1,0 @@
-myfile = open("server_ip.txt","rt")
-contents = myfile.read()
-myfile.close()
-#print(contents)
-print(contents[15:27])
-textfile = open("ip.txt","wt")
-n = textfile.write(contents[15:27])
-textfile.close() 
